@@ -16,11 +16,12 @@ Resources:
     Type: AWS::Serverless::Function # More info about Function Resource: https://github.com/awslabs/serverless-application-model/blob/master/versions/2016-10-31.md#awsserverlessfunction
     Properties:
       FunctionName: localstack-lambda
-      CodeUri: src/
+      # Regular deployment
+      # CodeUri: src/
       # Hot reloading
-      # CodeUri:
-      #   Bucket: hot-reload
-      #   Key: /Users/joe/Projects/LocalStack/localstack-lambda-demos/localstack-lambda/src/
+      CodeUri:
+        Bucket: hot-reload
+        Key: /Users/joe/Projects/LocalStack/localstack-lambda-demos/localstack-lambda/src/
       Handler: app.lambda_handler
       Runtime: python3.10
       Architectures:
