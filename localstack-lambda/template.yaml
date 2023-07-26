@@ -1,0 +1,37 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Transform: AWS::Serverless-2016-10-31
+Description: >
+  LocalStack Development
+
+  Sample SAM Template for LocalStack Lambda development tools
+
+# More info about Globals: https://github.com/awslabs/serverless-application-model/blob/master/docs/globals.rst
+Globals:
+  Function:
+    Timeout: 3600
+    MemorySize: 128
+
+Resources:
+  LocalStackFunction:
+    Type: AWS::Serverless::Function # More info about Function Resource: https://github.com/awslabs/serverless-application-model/blob/master/versions/2016-10-31.md#awsserverlessfunction
+    Properties:
+      FunctionName: localstack-lambda
+      CodeUri: src/
+      # Hot reloading
+      # CodeUri:
+      #   Bucket: hot-reload
+      #   Key: /Users/joe/Projects/LocalStack/localstack-lambda-demos/localstack-lambda/src/
+      Handler: app.lambda_handler
+      Runtime: python3.10
+      Architectures:
+        - x86_64
+      # Layers:
+      #   - arn:aws:lambda:us-east-1:879723642032:layer:debugpy-layer:1
+
+Outputs:
+  LocalStackFunction:
+    Description: "LocalStack Lambda Function ARN"
+    Value: !GetAtt LocalStackFunction.Arn
+  LocalStackFunctionIamRole:
+    Description: "Implicit IAM Role created for LocalStack function"
+    Value: !GetAtt LocalStackFunctionRole.Arn
