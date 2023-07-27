@@ -29,9 +29,7 @@ awslocal lambda create-function \
     --runtime nodejs18.x \
     --zip-file fileb://function.zip \
     --handler index.handler \
-    --role arn:aws:iam::644798471398:role/lambda-role
-
-# TODO: Use AWS account ID 644798471398 instead of 000000000000
+    --role arn:aws:iam::000000000000:role/lambda-role
 
 # List function
 awslocal lambda list-functions
@@ -44,7 +42,7 @@ awslocal lambda create-function-url-config \
     --function-name localstack-lambda-url-example \
     --auth-type NONE
 
-# Trigger the Lambda function URL
+# Trigger the Lambda function URL (replace <XXXXXXXX> with the generated URL id)
 curl -X POST \
     'http://<XXXXXXXX>.lambda-url.us-east-1.localhost.localstack.cloud:4566/' \
     -H 'Content-Type: application/json' \
